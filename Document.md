@@ -88,6 +88,45 @@ In a game engine like Unity, an AI character does not see pixels as a human play
 3. The network outputs a continuous 2D/3D action vector `a_t \in [-1.0, 1.0]`.
 4. Unity's physics engine applies that vector directly as forces or torque to the character's Rigidbody:
 
+---
+
+##Objective
+
+###1. The "Elevator Pitch" (For friends, recruiters, or non-technical people)
+
+"I am building a robotic brain that separates complex human instructions from survival reflexes. Most robots crash if a moving object blocks their pre-programmed path. 'Dodger' uses one AI to understand human voice commands and map the destination, while a second, independent reinforcement learning AI acts as a reactive nervous system—instinctively dodging unpredictable moving threats in real-time to reach the target safely."
+
+###2. The Embodied AI Objective (For AI peers or tech interviews)
+
+"The objective is to solve the multi-objective conflict in Dynamic Vision-and-Language Navigation (DynamicVLN). 'Dodger' creates a hierarchical agent that decouples long-horizon semantic goal execution from short-horizon continuous motor control. It ensures that an agent can follow natural language instructions without relying on static NavMesh algorithms, using simulated LiDAR to reactively evade dynamic obstacles in continuous space."
+
+###3. The Formal Academic Objective (For M.Tech thesis committee)
+
+"To develop a two-tier hierarchical reinforcement learning architecture that translates natural language commands into continuous goal embeddings via a High-Level Intent Parser, while delegating spatial navigation to a Low-Level Motor Control Policy. By framing the navigation task as a Constrained Markov Decision Process (CMDP), the objective is to maximize semantic goal attainment while mathematically bounding the collision risk against dynamic adversaries."
+
+---
+##Objective points for paper
+
+###1. Formulation of the Experiential Data and State Spaces
+To construct and define the interactive 3D simulation environment (utilizing Unity ML-Agents) that will generate continuous experiential data. This includes defining the state space ($S$) via simulated LiDAR raycasts and kinematic sensors, and establishing the continuous action space ($A$) required for fluid motor control.
+
+###2. Integration of the High-Level Intent Parser
+To develop and integrate a lightweight language-processing layer (using quantized Sentence-Transformers or a local LLM) capable of translating unstructured natural language instructions into continuous, mathematical spatial goal embeddings ($g$) without relying on hardcoded keyword scripts.
+
+###3. Optimization of the Constrained Control Policy
+To train a Deep Reinforcement Learning algorithm (such as Proximal Policy Optimization) mathematically framed as a Constrained Markov Decision Process (CMDP). The objective is to optimize the policy to maximize semantic goal attainment (Reward $R$) while strictly bounding collision risks against dynamic threats below a predefined safety threshold (Cost $C \le \epsilon$).
+
+###4. Algorithmic Benchmarking and Ablation Analysis
+To evaluate the hierarchical architecture's performance against classical static pathfinding algorithms (e.g., NavMesh) and standard, unconstrained RL baselines. This evaluation will strictly measure inference latency, path efficiency, and the success rate of zero-shot evasion in highly adversarial, dynamic scenarios.
+
+###5. Conclusion on Sim-to-Real Transferability
+To synthesize the simulation benchmarks and conclude on the algorithmic viability of decoupling semantic intent from reactive motor control. The final objective is to validate how this continuous control architecture can be directly mapped to critical real-world Embodied AI domains, such as autonomous warehouse logistics and search-and-rescue robotics.
+
+---
 ```csharp
+
 // Unity C# translating neural action vector into physical movement
-rigidbody.AddForce(new Vector3(action[0], 0f, action[1]) * moveSpeed);
+rigidbody.AddForce(new Vector3(action[0], 0f, action[1]) * moveSpeed);//
+
+
+
